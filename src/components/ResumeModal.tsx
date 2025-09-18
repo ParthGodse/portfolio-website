@@ -1,7 +1,7 @@
 // components/ResumeModal.tsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { X, ZoomIn, ZoomOut, Download, ExternalLink } from "lucide-react";
+import { X, Download, ExternalLink } from "lucide-react";
 
 type ResumeModalProps = {
   open: boolean;
@@ -50,9 +50,6 @@ export default function ResumeModal({
   if (!mounted || !open) return null;
 
   const pdfSrc = `${src}#toolbar=0&navpanes=0`;
-  const dec = () => setZoom(z => Math.max(0.5, +(z - 0.1).toFixed(2)));
-  const inc = () => setZoom(z => Math.min(2.0, +(z + 0.1).toFixed(2)));
-  const reset = () => setZoom(1);
 
   return createPortal(
     <div

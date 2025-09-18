@@ -3,18 +3,20 @@ import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 import ResumeModal from "./ResumeModal";
 
 const LINKS = [
-  { id: "hero",     label: "Home" },
-  { id: "about",    label: "About" },
-  { id: "projects", label: "Projects" },
-  { id: "skills",   label: "Skills" },
-  { id: "contact",  label: "Contact" },
+  { id: "hero",       label: "Home" },
+  { id: "about",      label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "projects",   label: "Projects" },
+  { id: "skills",     label: "Skills" },
+  { id: "contact",    label: "Contact" },
 ];
+
+const SECTION_IDS = LINKS.map(l => l.id);
+const NAV_H = 56; // h-14
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("hero");
-
-  // RENAMED to avoid confusion with resumeOpen
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [resumeOpen, setResumeOpen] = useState(false);
@@ -27,21 +29,37 @@ export default function NavBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Robust scroll-spy: pick the section that actually contains a probe point
   useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach(e => e.isIntersecting && setActive(e.target.id)),
-      { rootMargin: "-35% 0px -50% 0px" }
-    );
-    LINKS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) io.observe(el);
-    });
-    return () => io.disconnect();
+    const pickActive = () => {
+      const probe = window.scrollY + NAV_H + window.innerHeight * 0.33;
+      let current = SECTION_IDS[0];
+      for (const id of SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.offsetTop;
+        const bottom = top + el.offsetHeight;
+        if (probe >= top && probe < bottom) { current = id; break; }
+      }
+      setActive(current);
+    };
+    pickActive();
+    window.addEventListener("scroll", pickActive, { passive: true });
+    window.addEventListener("resize", pickActive);
+    return () => {
+      window.removeEventListener("scroll", pickActive);
+      window.removeEventListener("resize", pickActive);
+    };
   }, []);
 
+  // Header-offset smooth scroll (prevents the title from hiding under the fixed nav)
   const go = (id: string) => {
     setMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById(id);
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - NAV_H - 8;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    setActive(id); // immediate feedback
   };
 
   const openResume = (e: React.MouseEvent) => {
@@ -77,15 +95,18 @@ export default function NavBar() {
                   key={link.id}
                   href={`#${link.id}`}
                   onClick={(e) => { e.preventDefault(); go(link.id); }}
-                  className={`relative text-sm transition ${
+                  className={`group relative text-sm transition ${
                     active === link.id ? "opacity-100" : "opacity-75 hover:opacity-100"
                   }`}
                 >
                   {link.label}
                   <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-indigo-400 to-fuchsia-400 transition-all ${
-                      active === link.id ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
+                    className={`
+                      pointer-events-none absolute -bottom-1 left-0 h-0.5 rounded-full
+                      bg-gradient-to-r from-[var(--brand-start)] to-[var(--brand-end)]
+                      transition-all duration-300
+                      ${active === link.id ? "w-full" : "w-0 group-hover:w-full"}
+                    `}
                   />
                 </a>
               ))}
@@ -101,16 +122,22 @@ export default function NavBar() {
                 Resume
               </a>
 
-              <a href="https://github.com/yourhandle" target="_blank" rel="noreferrer"
-                 className="p-0 text-white/80 hover:text-white transition" aria-label="GitHub">
+              <a
+                href="https://github.com/ParthGodse" target="_blank" rel="noreferrer"
+                className="p-0 text-white/80 hover:text-white transition" aria-label="GitHub"
+              >
                 <Github size={18} />
               </a>
-              <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noreferrer"
-                 className="p-0 text-white/80 hover:text-white transition" aria-label="LinkedIn">
+              <a
+                href="https://www.linkedin.com/in/parth-godse/" target="_blank" rel="noreferrer"
+                className="p-0 text-white/80 hover:text-white transition" aria-label="LinkedIn"
+              >
                 <Linkedin size={18} />
               </a>
-              <a href="mailto:you@example.com"
-                 className="p-0 text-white/80 hover:text-white transition" aria-label="Email">
+              <a
+                href="mailto:parthgod0708@gmail.com"
+                className="p-0 text-white/80 hover:text-white transition" aria-label="Email"
+              >
                 <Mail size={18} />
               </a>
             </div>
@@ -158,12 +185,12 @@ export default function NavBar() {
         )}
       </nav>
 
-      {/* Mount ONE modal here (outside menus) */}
+      {/* One modal mount */}
       <ResumeModal
         open={resumeOpen}
         onClose={() => setResumeOpen(false)}
         origin={origin}
-        src="/Resume_parth_sde.pdf"              // put file in /public
+        src="/Resume_parth_sde.pdf"
         fileName="Parth_Godse_Resume.pdf"
       />
     </>

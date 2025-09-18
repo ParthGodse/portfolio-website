@@ -301,3 +301,16 @@ body { background: hsl(var(--background)); color: hsl(var(--foreground)); }
 /* in styles.css */
 .resume-modal { color: #fff; }                  /* sets a white currentColor scope */
 .resume-modal svg { color: #fff !important; }   /* hard-override any inherited color */
+
+.metric-hero-ring{
+  border: 1.5px solid transparent;
+  border-radius: 0.75rem;              /* ≈ rounded-xl; tweak if you want */
+  --card-fill: #fff;                   /* white fill for light sections */
+  background:
+    linear-gradient(var(--card-fill), var(--card-fill)) padding-box,
+    linear-gradient(90deg, var(--brand-start), var(--brand-end)) border-box;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04);
+}
+
+/* styles.css */
+#experience button { background-color: white !important; color: inherit; }

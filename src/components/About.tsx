@@ -36,11 +36,11 @@ export default function About() {
             </p>
 
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+              <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 metric-hero-ring">
                 <div className="text-2xl font-semibold">15+</div>
                 <div className="text-xs text-zinc-600">Projects</div>
               </div>
-              <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+              <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 metric-hero-ring">
                 <div className="text-2xl font-semibold">3.8</div>
                 <div className="text-xs text-zinc-600">GPA</div>
               </div>

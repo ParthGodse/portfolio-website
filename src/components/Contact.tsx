@@ -176,7 +176,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-medium">Email</div>
-                  <div className="text-white/70">you@example.com</div>
+                  <div className="text-white/70">parthgod0708@gmail.com</div>
                 </div>
               </div>
 
@@ -186,7 +186,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-medium">Phone</div>
-                  <div className="text-white/70">+1 (555) 123-4567</div>
+                  <div className="text-white/70">+1 (812) 553-2820</div>
                 </div>
               </div>
 
@@ -196,14 +196,14 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-medium">Location</div>
-                  <div className="text-white/70">San Francisco, CA</div>
+                  <div className="text-white/70">United States</div>
                 </div>
               </div>
             </div>
 
             <div className="flex gap-4 pt-4">
               <a
-                href="https://github.com/yourhandle"
+                href="https://github.com/ParthGodse"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -212,7 +212,7 @@ export default function Contact() {
                 <Github size={20} />
               </a>
               <a
-                href="https://linkedin.com/in/yourhandle"
+                href="https://www.linkedin.com/in/parth-godse/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"

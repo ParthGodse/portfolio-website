@@ -4,6 +4,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import NavBar from "./components/NavBar";
+import Experience from "./components/Experience";
 function AppShell({ children }: React.PropsWithChildren) {
   return <div className="app-shell">{children}</div>;
 }
@@ -15,6 +16,7 @@ export default function App() {
     <main className="min-h-screen text-foreground">
       <Hero />
       <About />
+      <Experience />
       <Projects />
       <Skills />
       <Contact />
