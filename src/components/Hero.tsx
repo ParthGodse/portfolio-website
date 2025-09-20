@@ -116,3 +116,87 @@ export default function Hero() {
     </section>
   );
 }
+// import { useCallback } from "react";
+
+// export default function Hero() {
+//   const go = useCallback((id: string) => {
+//     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+//   }, []);
+
+//   return (
+//     <section
+//       id="hero"
+//       className="relative min-h-[100svh] overflow-hidden bg-hero-surface text-white"
+//     >
+//       {/* spotlight / bloom */}
+//       <div
+//         aria-hidden
+//         className="pointer-events-none absolute right-[14%] top-[42%] -z-10 h-[55vmax] w-[55vmax] rounded-full"
+//         style={{
+//           background:
+//             "radial-gradient(closest-side, rgba(124,58,237,.28), rgba(99,102,241,.18) 40%, transparent 70%)",
+//           filter: "blur(22px)",
+//           transform: "translate(25%,-40%)",
+//         }}
+//       />
+
+//       {/* decorative shapes */}
+//       <div
+//         aria-hidden
+//         className="absolute right-10 top-10 size-4 rotate-45 rounded-sm"
+//         style={{ background: "linear-gradient(90deg,var(--brand-start),var(--brand-end))" }}
+//       />
+//       <div
+//         aria-hidden
+//         className="absolute left-10 bottom-10 size-6 rounded-sm border border-white/15"
+//       />
+
+//       {/* content */}
+//       <div className="container mx-auto px-6">
+//         <div className="grid items-center gap-12 md:grid-cols-2 pt-28 pb-20">
+//           {/* left: copy */}
+//           <div className="max-w-xl">
+//             <h1 className="leading-[0.95] text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">
+//               <span className="block">Digital</span>
+//               <span className="block text-brand-gradient">Craftsman</span>
+//             </h1>
+
+//             <p className="mt-6 text-lg sm:text-xl text-white/75 max-w-prose">
+//               Transforming ideas into pixel-perfect realities through thoughtful design
+//               and clean code architecture.
+//             </p>
+
+//             <div className="mt-8 flex flex-wrap gap-4">
+//               <button onClick={() => go("projects")} className="btn-primary">
+//                 Portfolio
+//               </button>
+//               <button onClick={() => go("about")} className="btn-ghost">
+//                 About
+//               </button>
+//             </div>
+//           </div>
+
+//           {/* right: image card */}
+//           <div className="md:ml-auto">
+//             <div className="hero-card brand-ring elevate relative w-full max-w-[560px] rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md">
+//               {/* faux header bar */}
+//               <div className="absolute left-6 right-6 top-6 h-2.5 rounded-full bg-white/10 overflow-hidden">
+//                 <div className="h-full w-[78%] rounded-full bg-brand-gradient" />
+//               </div>
+
+//               {/* image */}
+//               <div className="aspect-[16/10] w-full overflow-hidden rounded-2xl">
+//                 {/* Put your image at /public/hero-image.jpg (or change the src) */}
+//                 <img
+//                   src="/hero-image.jpg"
+//                   alt="Selected work preview"
+//                   className="h-full w-full object-cover"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
