@@ -347,7 +347,7 @@ body { background: hsl(var(--background)); color: hsl(var(--foreground)); }
 }
 @keyframes islandRingSpin { to { --_angle: 360deg; } }
 
-/* ensure icon anchors never get a dark pill
+ensure icon anchors never get a dark pill
 .island .nav-icon,
 .island .nav-icon:hover,
 .island .nav-icon:focus,
@@ -355,72 +355,5 @@ body { background: hsl(var(--background)); color: hsl(var(--foreground)); }
   background: transparent !important;
   box-shadow: none !important;
   border: 0 !important;
-} */
-
-:root{
-  /* if you already have these, keep your values */
-  --brand-start:#6366f1;   /* indigo-500 */
-  --brand-end:#ec4899;     /* fuchsia-500 */
-
-  /* dark surface for geometric-modern hero */
-  --surface-900: hsl(222 47% 7%);   /* near-black blue */
-  --surface-800: hsl(222 44% 9%);   /* card glass fill */
 }
 
-/* Background for the hero section (subtle vertical gradient + noise-friendly) */
-.bg-hero-surface{
-  background:
-    radial-gradient(120% 90% at 80% 40%, rgba(99,102,241,.10), transparent 60%),
-    linear-gradient(180deg, var(--surface-900) 0%, hsl(223 47% 8%) 60%, var(--surface-900) 100%);
-}
-
-/* Brand gradient text + background helpers */
-.text-brand-gradient{
-  background: linear-gradient(90deg, var(--brand-start), var(--brand-end));
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
-.bg-brand-gradient{
-  background: linear-gradient(90deg, var(--brand-start), var(--brand-end));
-}
-
-/* Glass card with brand ring on the border */
-.brand-ring{
-  /* gradient ring + keep inside transparent/glassy */
-  background:
-    linear-gradient(rgba(255,255,255,0.04), rgba(255,255,255,0.04)) padding-box,
-    linear-gradient(90deg, var(--brand-start), var(--brand-end)) border-box;
-  border: 1px solid transparent !important;
-}
-.elevate{
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.06) inset,
-    0 20px 40px rgba(2,6,23,.45),
-    0 6px 18px rgba(2,6,23,.35);
-}
-
-/* Buttons (match screenshot vibe) */
-.btn-primary{
-  --tw-text-opacity:1;
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:0.6rem 1.1rem; border-radius:0.6rem;
-  font-weight:600; color:white;
-  background: linear-gradient(90deg, var(--brand-start), var(--brand-end));
-  transition: transform .15s ease, filter .15s ease;
-}
-.btn-primary:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-
-.btn-ghost{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:0.58rem 1.05rem; border-radius:0.6rem;
-  font-weight:600; color:rgba(255,255,255,.9);
-  background: transparent;
-  border:1px solid rgba(255,255,255,.16);
-  transition: background-color .15s ease, transform .15s ease, border-color .15s ease;
-}
-.btn-ghost:hover{ background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22); }
-
-/* Optional: ensure hero card’s inner image corners match container when scaled */
-.hero-card > .rounded-2xl img{ border-radius: 1rem; }
-
-/* If any buttons/anchors inside hero pick up default dark backgrounds, strip them */
-#hero a, #hero button{ background-clip: padding-box; }
